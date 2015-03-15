@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset=utf-8 />
+	<title>JavaScript Recipes</title>
+	<link rel="stylesheet" type="text/css" media="screen" href="css/styles.css" />
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+	<script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js?skin=sunburst"></script>
+	<script src="js/scripts.js"></script>
+	<!--[if IE]>
+		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+</head>
+<body>
+
+	<div id="wrapper">
+		
+		<h1>JavaScript Recipes</h1>
+
+		<h2>Apply a function to each element in an array</h2>
+<pre class="prettyprint linenums">
+	var charSets = new Array("ab","bb","cd","ab","cc","ab","dd","ab");
+	
+	function replaceElement(element,index,array) {
+		if (element == "ab") array[index] = "**";
+	}
+	
+	charSets.forEach(replaceElement);
+	console.log(charSets[0]);
+</pre>
+		
+		<hr />
+
+		<h2>Use map() to convert an array into a new (non-referencing) one</h2>
+<pre class="prettyprint linenums">
+	function convertValues(element,index,array) {
+		var suffix = "a";
+		element += suffix;
+		return element;
+	}
+	
+	var myArray = new Array(22,34,21,18,28,4);
+	var newArray = myArray.map(convertValues);
+	console.log(myArray);
+	console.log(newArray);
+	myArray[0] = 30;
+	// original array[0] changed
+	console.log(myArray[0] + "after");
+	// new array did not change
+	console.log(newArray[0] + "after");
+</pre>
+
+		<hr />
+	
+		<h2>Create a filtered array</h2>
+<pre class="prettyprint linenums">
+	function removeChars(element,index,array) {
+		
+		// testing how to access arguments object
+		var args = Array.prototype.slice.call(removeChars.arguments);
+		console.log(args);
+		
+		return (element !== "**");
+	}
+	
+	var charSets = new Array("**","bb","cd","**","cc","**","dd","**");
+	var newCharSets = charSets.filter(removeChars);
+	console.log(charSets);
+	console.log(newCharSets);
+</pre>
+
+	</div><!-- end #wrapper -->
+	
+</body>
