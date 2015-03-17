@@ -45,3 +45,7 @@ h2 {
 .prettyprint ol.linenums > li:nth-child(2n) {
 	background-color: #282828;
 }
+
+.tab-label a {
+	color: #222;
+}
